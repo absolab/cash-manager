@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './assets/css/style.css';
 import reportWebVitals from './reportWebVitals';
-import { MainLayout } from './layouts';
+import { MainLayout, LoginLayout } from './layouts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginLayout from './layouts/LoginLayout';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
