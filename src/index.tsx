@@ -2,16 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { MainLayout } from './layouts';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import LoginLayout from './layouts/LoginLayout';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <div>
-      출력 확인
-    </div>
-  </React.StrictMode>
+  <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginLayout/>} />
+        <Route path="/*" element={<MainLayout/>} />
+      </Routes>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
