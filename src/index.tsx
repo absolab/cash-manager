@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './assets/css/style.css';
-import reportWebVitals from './reportWebVitals';
-import { MainLayout, LoginLayout } from './layouts';
+import 'assets/css/style.css';
+import reportWebVitals from 'reportWebVitals';
+import { MainLayout, LoginLayout } from 'layouts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
