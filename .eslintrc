@@ -4,11 +4,9 @@
     "node": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "eslint-plugin-prettier"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "eslint-config-prettier"],
-  "rules": {
-    "@typescript-eslint/explicit-module-boundary-types": "off"
-  },
+  "plugins": ["eslint-plugin-react", "@typescript-eslint/eslint-plugin", "eslint-config-prettier"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "rules": {},
   "settings": {
     "react": {
       "version": "detect"
