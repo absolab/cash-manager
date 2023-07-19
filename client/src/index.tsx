@@ -6,6 +6,16 @@ import { MainLayout, LoginLayout } from 'layouts'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+
+const setScreenSize = () => {
+  const vh = window.innerHeight * 0.01
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
+}
+window.addEventListener('resize', () => {
+  setScreenSize()
+})
+setScreenSize()
+
 root.render(
   <BrowserRouter>
     <Routes>

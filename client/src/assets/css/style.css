@@ -9,3 +9,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+#root {
+  height: calc(var(--vh, 1vh) * 100);
+  background-color: #f2f3f5;
+  overflow: hidden;
+}
