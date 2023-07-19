@@ -4,8 +4,8 @@
     "node": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["eslint-plugin-react", "@typescript-eslint/eslint-plugin", "eslint-config-prettier"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "plugins": ["eslint-plugin-react", "@typescript-eslint/eslint-plugin"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "eslint-config-prettier"],
   "rules": {},
   "settings": {
     "react": {
