@@ -9,6 +9,7 @@ const MainLayout = () => {
       <button type="button" onClick={() => navigate('/login')}>
         로그인으로 이동
       </button>
+      mac github 테스트
     </div>
   )
 }
