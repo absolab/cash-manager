@@ -3,8 +3,8 @@ const color = {
     dark: '#001C30',
     main: '#176B87',
     light: '#64CCC5',
-    text: '#DAFFFB'
-  }
+    text: '#DAFFFB',
+  },
 }
 
 export default color
