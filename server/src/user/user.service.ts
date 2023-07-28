@@ -14,10 +14,11 @@ export class UserService {
     return this.usersRepository.find()
   }
 
-  // getOne(id: string): Promise<User | null> {
-  //   return this.usersRepository.findOneBy({ id })
-  //   // if (!user) {
-  //   //   throw new NotFoundException(`user id ${id} not found`)
-  //   // }
-  // }
+  async getOne(id: string): Promise<User | null> {
+    const user = await this.usersRepository.findOneBy({ id })
+    if (!user) {
+      throw new NotFoundException(`user id ${id} not found`)
+    }
+    return user
+  }
 }

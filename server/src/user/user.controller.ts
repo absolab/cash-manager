@@ -11,10 +11,10 @@ class UserController {
     return this.userService.getAll()
   }
 
-  // @Get('/:id')
-  // getOne(@Param('id') userId: string): Promise<User | null> {
-  //   return this.userService.getOne(userId)
-  // }
+  @Get('/:id')
+  getOne(@Param('id') userId: string): Promise<User | null> {
+    return this.userService.getOne(userId)
+  }
 }
 
 export { UserController }
