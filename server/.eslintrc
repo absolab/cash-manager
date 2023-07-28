@@ -1,5 +1,5 @@
 {
-  "evn": {
+  "env": {
     "node": true
   },
   "parser": "@typescript-eslint/parser",
