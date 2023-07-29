@@ -7,18 +7,19 @@ import { User } from 'user/user.entity'
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private userRepository: Repository<User>,
   ) {}
 
-  getAll(): Promise<User[]> {
-    return this.usersRepository.find()
-  }
-
-  async getOne(id: string): Promise<User | null> {
-    const user = await this.usersRepository.findOneBy({ id })
-    if (!user) {
-      throw new NotFoundException(`user id ${id} not found`)
+  async login(id: string, pw: string): Promise<number> {
+    const search = {
+      id: id.trim(),
+      pw: pw.trim().toLowerCase(),
     }
-    return user
+    const user = await this.userRepository.findOne({ where: search })
+
+    if (user) {
+      return user.seq
+    }
+    throw new NotFoundException(`login fail`)
   }
 }

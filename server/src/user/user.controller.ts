@@ -1,19 +1,14 @@
-import { Controller, Get, Param } from '@nestjs/common'
+import { Body, Controller, Post } from '@nestjs/common'
 import { UserService } from './user.service'
-import { User } from './user.entity'
 
 @Controller('user')
 class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get()
-  getAll(): Promise<User[]> {
-    return this.userService.getAll()
-  }
-
-  @Get('/:id')
-  getOne(@Param('id') userId: string): Promise<User | null> {
-    return this.userService.getOne(userId)
+  @Post('login')
+  login(@Body('id') id: string, @Body('pw') pw: string): Promise<number> {
+    // 나중에 세션이나 토큰 처리도 해줘야지
+    return this.userService.login(id, pw)
   }
 }
 
