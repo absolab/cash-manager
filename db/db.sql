@@ -16,6 +16,20 @@ CREATE TABLE `USER` (
     `pw`        VARCHAR(255)    NOT NULL
 );
 
+CREATE TABLE `CODE_GROUP` (
+    `seq`   INT             AUTO_INCREMENT PRIMARY KEY,
+    `code`  VARCHAR(255)    NOT NULL UNIQUE KEY,
+    `name`  VARCHAR(255)    NOT NULL DEFAULT ''
+);
+
+CREATE TABLE `CODE_DETAIL` (
+    `seq`   INT             AUTO_INCREMENT PRIMARY KEY,
+    `group` VARCHAR(255)    NOT NULL,
+    `code`  VARCHAR(255)    NOT NULL UNIQUE KEY,
+    `name`  VARCHAR(255)    NOT NULL,
+    FOREIGN KEY (`group`) REFERENCES `CODE_GROUP` (`code`)
+);
+
 CREATE TABLE `FINANCE_GROUP` (
     `seq`       INT             AUTO_INCREMENT PRIMARY KEY,
     `uid`       INT             NOT NULL,
@@ -67,19 +81,5 @@ CREATE TABLE `EXPENSE_DETAIL` (
     FOREIGN KEY (`parent`) REFERENCES `EXPENSE_GROUP` (`seq`)
 );
 
-CREATE TABLE `CODE_GROUP` (
-    `seq`   INT             AUTO_INCREMENT PRIMARY KEY,
-    `code`  VARCHAR(255)    NOT NULL UNIQUE KEY,
-    `name`  VARCHAR(255)    NOT NULL DEFAULT ''
-);
-
-CREATE TABLE `CODE_DETAIL` (
-    `seq`   INT             AUTO_INCREMENT PRIMARY KEY,
-    `group` VARCHAR(255)    NOT NULL,
-    `code`  VARCHAR(255)    NOT NULL UNIQUE KEY,
-    `name`  VARCHAR(255)    NOT NULL,
-    FOREIGN KEY (`group`) REFERENCES `CODE_GROUP` (`code`)
-);
-
-INSERT INTO `TB_USER`(`id`, `pw`)
+INSERT INTO `USER`(`id`, `pw`)
 VALUES ('admin', SHA2('admin', 512));
