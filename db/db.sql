@@ -80,6 +80,3 @@ CREATE TABLE `EXPENSE_DETAIL` (
     `comment`   VARCHAR(255)    NOT NULL DEFAULT '',
     FOREIGN KEY (`parent`) REFERENCES `EXPENSE_GROUP` (`seq`)
 );
-
-INSERT INTO `USER`(`id`, `pw`)
-VALUES ('admin', SHA2('admin', 512));
