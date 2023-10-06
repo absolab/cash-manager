@@ -10,73 +10,75 @@ CREATE DATABASE cash
 
 USE cash;
 
-CREATE TABLE `TB_USER` (
+CREATE TABLE `USER` (
     `seq`       INT             AUTO_INCREMENT PRIMARY KEY,
     `id`        VARCHAR(255)    UNIQUE KEY,
     `pw`        VARCHAR(255)    NOT NULL
 );
 
-CREATE TABLE `TB_FINANCE` (
+CREATE TABLE `FINANCE_GROUP` (
     `seq`       INT             AUTO_INCREMENT PRIMARY KEY,
     `uid`       INT             NOT NULL,
     `name`      VARCHAR(255)    NOT NULL DEFAULT '',
-    FOREIGN KEY (`uid`) REFERENCES `TB_USER` (`seq`) 
+    FOREIGN KEY (`uid`) REFERENCES `USER` (`seq`) 
 );
 
-CREATE TABLE `TB_FINANCE_DETAIL` (
+CREATE TABLE `FINANCE_DETAIL` (
     `seq`       INT             AUTO_INCREMENT PRIMARY KEY,
     `parent`    INT             NOT NULL,
     `date`      DATE            NOT NULL,
     `mount`     INT             NOT NULL DEFAULT 0,
-    FOREIGN KEY (`parent`) REFERENCES `TB_FINANCE` (`seq`)
+    FOREIGN KEY (`parent`) REFERENCES `FINANCE_GROUP` (`seq`)
 );
 
-CREATE TABLE `TB_SPND` (
-    `seq`       INT              AUTO_INCREMENT PRIMARY KEY,
-    `uid`       INT              NOT NULL,
-    `name`      VARCHAR(255)     NOT NULL DEFAULT '',
-    `date`      DATE             NOT NULL DEFAULT (current_date),
-    `mount`     INT              NOT NULL DEFAULT 0,
-    FOREIGN KEY (`uid`) REFERENCES `TB_USER` (`seq`)
-);
-
-CREATE TABLE `TB_FIXD_SPND` (
+CREATE TABLE `INCOME_GROUP` (
     `seq`       INT             AUTO_INCREMENT PRIMARY KEY,
     `uid`       INT             NOT NULL,
     `name`      VARCHAR(255)    NOT NULL DEFAULT '',
-    FOREIGN KEY (`uid`) REFERENCES `TB_USER` (`seq`)
+    `category`  VARCHAR(255)    NOT NULL,
+    FOREIGN KEY (`uid`) REFERENCES `USER` (`seq`),
+    FOREIGN KEY (`category`) REFERENCES `CODE_DETAIL` (`code`)
 );
 
-CREATE TABLE `TB_FIXD_SPND_DETAIL` (
+CREATE TABLE `INCOME_DETAIL` (
     `seq`       INT             AUTO_INCREMENT PRIMARY KEY,
     `parent`    INT             NOT NULL,
     `date`      DATE            NOT NULL DEFAULT (current_date),
     `mount`     INT             NOT NULL DEFAULT 0,
-    FOREIGN KEY (`parent`) REFERENCES `TB_FIXD_SPND` (`seq`)
+    `comment`   VARCHAR(255)    NOT NULL DEFAULT '',
+    FOREIGN KEY (`parent`) REFERENCES `INCOME_GROUP` (`seq`)
 );
 
-CREATE TABLE `TB_INCM` (
+CREATE TABLE `EXPENSE_GROUP` (
     `seq`       INT             AUTO_INCREMENT PRIMARY KEY,
     `uid`       INT             NOT NULL,
     `name`      VARCHAR(255)    NOT NULL DEFAULT '',
-    `date`      DATE            NOT NULL DEFAULT (current_date),
-    `mount`     INT             NOT NULL DEFAULT 0,
-    FOREIGN KEY (`uid`) REFERENCES `TB_USER` (`seq`)
+    `category`  VARCHAR(255)    NOT NULL,
+    FOREIGN KEY (`uid`) REFERENCES `USER` (`seq`),
+    FOREIGN KEY (`category`) REFERENCES `CODE_DETAIL` (`code`)
 );
 
-CREATE TABLE `TB_FIXD_INCM` (
-    `seq`       INT             AUTO_INCREMENT PRIMARY KEY,
-    `uid`       INT             NOT NULL,
-    `name`      VARCHAR(255)    NOT NULL DEFAULT '',
-    FOREIGN KEY (`uid`) REFERENCES `TB_USER` (`seq`)
-);
-
-CREATE TABLE `TB_FIXD_INCM_DETAIL` (
+CREATE TABLE `EXPENSE_DETAIL` (
     `seq`       INT             AUTO_INCREMENT PRIMARY KEY,
     `parent`    INT             NOT NULL,
     `date`      DATE            NOT NULL DEFAULT (current_date),
     `mount`     INT             NOT NULL DEFAULT 0,
-    FOREIGN KEY (`parent`) REFERENCES `TB_FIXD_INCM` (`seq`)
+    `comment`   VARCHAR(255)    NOT NULL DEFAULT '',
+    FOREIGN KEY (`parent`) REFERENCES `EXPENSE_GROUP` (`seq`)
+);
+
+CREATE TABLE `CODE_GROUP` (
+    `seq`   INT             AUTO_INCREMENT PRIMARY KEY,
+    `code`  VARCHAR(255)    NOT NULL UNIQUE KEY,
+    `name`  VARCHAR(255)    NOT NULL DEFAULT ''
+);
+
+CREATE TABLE `CODE_DETAIL` (
+    `seq`   INT             AUTO_INCREMENT PRIMARY KEY,
+    `group` VARCHAR(255)    NOT NULL,
+    `code`  VARCHAR(255)    NOT NULL UNIQUE KEY,
+    `name`  VARCHAR(255)    NOT NULL,
+    FOREIGN KEY (`group`) REFERENCES `CODE_GROUP` (`code`)
 );
 
 INSERT INTO `TB_USER`(`id`, `pw`)
